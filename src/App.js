@@ -4,7 +4,9 @@ import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 //components used
 import Home from '../pages/Home'
 import Form from '../pages/form'
+import required from '../pages/required'
 import Confirmation from '../pages/confirmation'
+import * as yup from 'yup';
 
 const App = () => {
   return (
