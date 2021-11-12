@@ -50,28 +50,7 @@ const Form = () => {
     instructions: "",
   });
 
-  useEffect(() => {
-    yupForm.isValid(enters).then((valid) => {});
-  }, [enters]);
-
-   const validate = (evt) => {
-       yup.reach(yupForm, evt.target.name)
-       .validate(evt.target.value)
-       .then(valid => {
-           setErr({
-             ...err, [evt.target.name]: ''
-        })
-          .catch(err => {
-              console.error(err)
-              setErr({...err, [evt.target.name]: err.errors[0]
-              })
-          })
-      })
-  }
-
   const onChange = (evt) => {
-      evt.persist();
-    validate(evt)
     const val = evt.target.value === 'checkbox' ? evt.target.checked : expect.target.value;
     setEnters({ ...enters, [evt.target.name]: val });
   };
@@ -104,9 +83,6 @@ const Form = () => {
             onChange={onChange}
           />
         </label>
-
-        {err.name.length > 1 ? <p className="error">{err.name}</p> : null}
-
         <br />
         <label htmlFor="Size">
           {" "}
