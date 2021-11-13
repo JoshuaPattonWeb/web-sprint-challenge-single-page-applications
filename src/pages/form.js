@@ -37,18 +37,10 @@ const Form = () => {
 
   const [enters, setEnters] = useState([emptyValues]);
 
-  const [err, setErr] = useState({
-    name: "",
-    size: "",
-    pepperoni: "",
-    sausage: "",
-    bacon: "",
-    chicken: "",
-    onions: "",
-    blackOlives: "",
-    special: "",
-    instructions: "",
-  });
+  useEffect(() => {
+    yupForm.isValid(enters).then((valid) => {});
+  }, [enters]);
+
 
   const onChange = (evt) => {
     const val = evt.target.value === 'checkbox' ? evt.target.checked : expect.target.value;
