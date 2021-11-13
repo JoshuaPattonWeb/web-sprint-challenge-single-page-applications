@@ -32,10 +32,12 @@ const emptyValues = {
   instructions: "",
 };
 
-const Form = () => {
+const Form = (props) => {
   const [isValid, setValid] = useState(true);
 
   const [enters, setEnters] = useState([emptyValues]);
+
+    const {change} = props;
 
   useEffect(() => {
     yupForm.isValid(enters).then((valid) => {});
@@ -43,8 +45,10 @@ const Form = () => {
 
 
   const onChange = (evt) => {
-    const val = evt.target.value === 'checkbox' ? evt.target.checked : expect.target.value;
-    setEnters({ ...enters, [evt.target.name]: val });
+    
+    const { name, value, checked, type } = evt.target
+    const newInfo = type === 'checkbox' ? checked : value;
+    change(name, newInfo)
   };
 
   const onSubmit = (evt) => {
